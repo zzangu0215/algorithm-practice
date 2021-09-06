@@ -3,7 +3,13 @@
 ## Table of Contents
 
 - [**Week 5**](#week-5)
+  - [character count](#01-character-count)
+  - [product of largest two](#02-product-of-largest-two)
+  - [camel case](#03-camel-case)
 - [**Week 6**](#week-6)
+  - [linear search](#01-linear-search)
+  - [is unique](#02-is-unique)
+  - [is anagram](#03-is-anagram)
 
 ## Week 5
 
@@ -134,7 +140,7 @@ const linearSearch = (arr, target) => {
 };
 ```
 
-## 02-Is Unique
+### 02-Is Unique
 
 Q. Write code to create a function that takes an array of numbers and returns `true` if no number appears more than once in the given array; else, it returns `false`.
 
@@ -151,5 +157,54 @@ const isUnique = (arr) => {
   }
 
   return true;
+};
+```
+
+### 03-Is Anagram
+
+Q. Write code to create a function that takes in two strings and return `true` if one string is an anagram of another string and otherwise returns `false`.
+
+> **Note:** An **anagram** is a word or phrase made by rearranging the letters of another word or phrase. See the [Wikipedia page on anagrams](https://en.wikipedia.org/wiki/Anagram) for more information.
+
+Solution #1:
+
+```js
+const isAnagram = (strA, strB) => {
+  const strA_Arr = strA.split("").sort();
+  const strB_Arr = strB.split("").sort();
+
+  if (strA_Arr.join("") === strB_Arr.join("")) return true;
+  else return false;
+};
+```
+
+Solution #2:
+
+```js
+const isAnagram = (strA, strB) => {
+  if (strA.length !== strB.length) {
+    return false;
+  }
+
+  const aLetterMap = {};
+  const bLetterMap = {};
+  const strLength = strA.length;
+
+  for (let i = 0; i < strLength; i += 1) {
+    const aLetter = strA[i];
+    const bLetter = strB[i];
+
+    aLetterMap[aLetter] = (aLetterMap[aLetter] || 0) + 1;
+    bLetterMap[bLetter] = (bLetterMap[bLetter] || 0) + 1;
+  }
+
+  // Array.prototype.some tests whether at least one element in the array passes
+  // the test implemented by the provided function.
+  // (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some)
+  const hasUnequalLetterCount = Object.keys(aLetterMap).some(
+    (key) => aLetterMap[key] !== bLetterMap[key]
+  );
+
+  return !hasUnequalLetterCount;
 };
 ```
