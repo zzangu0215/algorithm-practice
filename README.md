@@ -10,6 +10,10 @@
   - [linear search](#01-linear-search)
   - [is unique](#02-is-unique)
   - [is anagram](#03-is-anagram)
+- [**Week 7**](#week-7)
+  - [most songs in playlist](#01-most-songs-in-playlist)
+  - [is perfect square](#02-is-perfect-square)
+  - [array search 2d](#03-array-search-2d)
 
 ## Week 5
 
