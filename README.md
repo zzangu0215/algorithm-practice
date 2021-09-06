@@ -133,3 +133,23 @@ const linearSearch = (arr, target) => {
   }
 };
 ```
+
+## 02-Is Unique
+
+Q. Write code to create a function that takes an array of numbers and returns `true` if no number appears more than once in the given array; else, it returns `false`.
+
+Solution:
+
+```js
+const isUnique = (arr) => {
+  const numOpject = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    if (numOpject[arr[i]] === true) return false;
+
+    numOpject[arr[i]] = true;
+  }
+
+  return true;
+};
+```
