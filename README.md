@@ -247,9 +247,75 @@ const vowelCount = function (str) {
 
 ### 01-Is Palindrome
 
+Q. Write code to create a function that takes in a string and determines whether or not it is a palindrome. A **palindrome** is any string spelled the same forwards as it is backward.
+
+Solution #1:
+
+```js
+const isPalindrome = function (str) {
+  const reversedString = str.split("").reverse().join("");
+
+  if (reversedString === str) {
+    return true;
+  }
+  return false;
+};
+```
+
+Solution #2:
+
+```js
+const isPalindrome = function (str) {
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] !== str[str.length - 1 - i]) {
+      return false;
+    }
+  }
+  return true;
+};
+```
+
 ### 02-Factorial
 
+Q. Write code to create a function that returns the factorial of a given number. A **factorial** of a number is the product of all positive integers less than or equal to the number. For more information, see the [Wikipedia page on factorials](https://en.wikipedia.org/wiki/Factorial).
+
+Solution:
+
+```js
+const factorial = function (num) {
+  let result = 1;
+
+  for (let i = num; i > 1; i--) {
+    result *= i;
+  }
+
+  return result;
+};
+```
+
 ### 03-Title Case
+
+Q. Write code to create a function that capitalizes the first letter of every word in a given string.
+
+Solution:
+
+```js
+const titleCase = function (str) {
+  const result = [];
+
+  const words = str.split(" ");
+
+  for (let i = 0; i < words.length; i++) {
+    const word = words[i].split("");
+
+    word[0] = word[0].toUpperCase();
+
+    result.push(word.join(""));
+  }
+
+  return result.join(" ");
+};
+```
 
 ## Week 5
 
