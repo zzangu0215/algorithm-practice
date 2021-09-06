@@ -152,9 +152,96 @@ const sumArray = function (arr) {
 
 ### 01-Fizz Buzz
 
+Q. Write code to create a function that solves the [Fizz Buzz](https://en.wikipedia.org/wiki/Fizz_buzz) problem.
+
+Solution:
+
+```js
+const fizzBuzz = function (arr) {
+  for (let i = 0; i < arr.length; i++) {
+    const currentNumber = arr[i];
+
+    if (currentNumber % 15 === 0) {
+      console.log("Fizz Buzz");
+    } else if (currentNumber % 3 === 0) {
+      console.log("Fizz");
+    } else if (currentNumber % 5 === 0) {
+      console.log("Buzz");
+    } else {
+      console.log(currentNumber);
+    }
+  }
+};
+```
+
 ### 02-Max Num
 
+Q. Write code to create a function that returns the largest number present in a given array.
+
+Solution:
+
+```js
+const maxNum = function (arr) {
+  let max = arr[0];
+
+  for (let i = 1; i < arr.length; i++) {
+    const currentNum = arr[i];
+
+    if (currentNum > max) {
+      max = currentNum;
+    }
+  }
+
+  return max;
+};
+```
+
 ### 03-Vowel Count
+
+Q. Write code to create a function that counts the number of vowels in a given string.
+
+Solution #1:
+
+```js
+const vowelCount = function (str) {
+  let result = 0;
+  const vowels = ["a", "e", "i", "o", "u"];
+
+  for (let i = 0; i < str.length; i++) {
+    const letter = str[i].toLowerCase();
+
+    if (vowels.indexOf(letter) !== -1) {
+      result += 1;
+    }
+  }
+
+  return result;
+};
+```
+
+Solution #2:
+
+```js
+const vowelCount = function (str) {
+  let result = 0;
+
+  for (let i = 0; i < str.length; i++) {
+    const letter = str[i].toLowerCase();
+
+    if (
+      letter === "a" ||
+      letter === "e" ||
+      letter === "i" ||
+      letter === "o" ||
+      letter === "u"
+    ) {
+      result += 1;
+    }
+  }
+
+  return result;
+};
+```
 
 ## Week 4
 
