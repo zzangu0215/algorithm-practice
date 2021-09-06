@@ -35,9 +35,57 @@
 
 ### 01-Arithmetic
 
+Q. Write code to create functions capable of different arithmetic operations.
+
+Solution:
+
+```js
+const add = function (num1, num2) {
+  return num1 + num2;
+};
+
+const subtract = function (num1, num2) {
+  return num1 - num2;
+};
+
+const multiply = function (num1, num2) {
+  return num1 * num2;
+};
+
+const divide = function (num1, num2) {
+  return num1 / num2;
+};
+```
+
 ### 02-Odd or Even
 
+Q. Write code to create a function that determines whether a number is odd or even.
+
+Solution:
+
+```js
+const oddOrEven = function (num) {
+  if (num % 2 === 0) {
+    return "even";
+  } else {
+    return "odd";
+  }
+};
+```
+
 ### 03-Log Nums
+
+Q. Write code to create a function that prints all whole numbers from 1 to a given number.
+
+Solution:
+
+```js
+const logNums = function (num) {
+  for (let i = 1; i <= num; i++) {
+    console.log(i);
+  }
+};
+```
 
 ## Week 2
 
