@@ -3,6 +3,7 @@
 ## Table of Contents
 
 - [**Week 5**](#week-5)
+- [**Week 6**](#week-6)
 
 ## Week 5
 
@@ -110,5 +111,25 @@ var camelCase = function (str) {
   }
 
   return result;
+};
+```
+
+## Week 6
+
+### 01-Linear Search
+
+Q. Write code to create a function that takes an array of numbers and a target number and returns the index of the target number in the given array.
+
+Solution:
+
+```js
+const linearSearch = (arr, target) => {
+  if (target in arr) {
+    for (let i = 0; i < arr.length; i++) {
+      if (target === arr[i]) return i;
+    }
+  } else {
+    return -1;
+  }
 };
 ```
