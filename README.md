@@ -66,3 +66,45 @@ var productOfLargestTwo = function (arr) {
   return largest * secondLargest;
 };
 ```
+
+### 03-Camel Case
+
+Q. Write code to create a function that takes a string and returns the string in camel case.
+
+Solution #1:
+
+```js
+const camelCase = function (str) {
+  const words = str.split(" ");
+
+  const result = words
+    .map((word) => {
+      return word[0].toUpperCase() + word.slice(1);
+    })
+    .join("");
+
+  return result[0].toLowerCase() + result.slice(1);
+};
+```
+
+Solution #2:
+
+```js
+var camelCase = function (str) {
+  var result = "";
+  var words = str.toLowerCase().split(" ");
+
+  for (var i = 0; i < words.length; i++) {
+    var word = words[i];
+    var letters = word.split("");
+
+    if (i > 0) {
+      letters[0] = letters[0].toUpperCase();
+    }
+
+    result += letters.join("");
+  }
+
+  return result;
+};
+```
