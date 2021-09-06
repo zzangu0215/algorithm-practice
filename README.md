@@ -1,5 +1,9 @@
 # Algorithm Practice
 
+## Table of Contents
+
+- [**Week 5**](#week-5)
+
 ## Week 5
 
 ### 01-Character Count
