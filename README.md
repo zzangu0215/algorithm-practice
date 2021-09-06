@@ -2,6 +2,22 @@
 
 ## Table of Contents
 
+- [**Week 1**](#week-1)
+  - [arithmetic](#01-arithmetic)
+  - [odd or even](#02-odd-or-even)
+  - [log nums](#03-log-nums)
+- [**Week 2**](#week-2)
+  - [log even nums](#01-log-even-nums)
+  - [countdown](#02-countdown)
+  - [sum array](#03-sum-array)
+- [**Week 3**](#week-3)
+  - [fizz buzz](#01-fizz-buzz)
+  - [max num](#02-max-num)
+  - [vowel count](#03-vowel-count)
+- [**Week 4**](#week-4)
+  - [is palindrome](#01-is-palindrome)
+  - [factorial](#02-factorial)
+  - [title case](#03-title-case)
 - [**Week 5**](#week-5)
   - [character count](#01-character-count)
   - [product of largest two](#02-product-of-largest-two)
@@ -14,6 +30,38 @@
   - [most songs in playlist](#01-most-songs-in-playlist)
   - [is perfect square](#02-is-perfect-square)
   - [array search 2d](#03-array-search-2d)
+
+## Week 1
+
+### 01-Arithmetic
+
+### 02-Odd or Even
+
+### 03-Log Nums
+
+## Week 2
+
+### 01-Log Even Nums
+
+### 02-Countdown
+
+### 03-Sum Array
+
+## Week 3
+
+### 01-Fizz Buzz
+
+### 02-Max Num
+
+### 03-Vowel Count
+
+## Week 4
+
+### 01-Is Palindrome
+
+### 02-Factorial
+
+### 03-Title Case
 
 ## Week 5
 
