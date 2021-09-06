@@ -91,9 +91,62 @@ const logNums = function (num) {
 
 ### 01-Log Even Nums
 
+Q. Write code to create a function that prints even numbers from 0 to a given number.
+
+Solution #1:
+
+```js
+const logEvenNums = function (num) {
+  for (let i = 0; i <= num; i++) {
+    if (i % 2 === 0) {
+      console.log(i);
+    }
+  }
+};
+```
+
+Solution #2:
+
+```js
+const logEvenNums = function (num) {
+  for (let i = 0; i <= num; i += 2) {
+    console.log(i);
+  }
+};
+```
+
 ### 02-Countdown
 
+Q. Write code to create a function that prints all whole numbers from `num` to a given number.
+
+Solution:
+
+```js
+const countdown = function (num) {
+  for (let i = num; i > 0; i--) {
+    console.log(i);
+  }
+};
+```
+
 ### 03-Sum Array
+
+Q. Write code to create a function that adds up all the numbers in a given array and returns the total.
+
+Solution:
+
+```js
+const sumArray = function (arr) {
+  let result = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    const currentNumber = arr[i];
+    result += currentNumber;
+  }
+
+  return result;
+};
+```
 
 ## Week 3
 
