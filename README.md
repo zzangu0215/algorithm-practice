@@ -522,3 +522,49 @@ const isAnagram = (strA, strB) => {
   return !hasUnequalLetterCount;
 };
 ```
+
+## Week 7
+
+### 01-Most Songs in Playlist
+
+### 02-Is Perfect Square
+
+### 03-Array Search 2d
+
+## Week 8
+
+### 01-Multiply Into 20
+
+Q. Write code to create a function that takes an array of unique numbers. Return `true` if any two numbers can be multiplied into 20, else return `false`.
+
+Solution #1:
+
+```js
+const multiplyInto20 = function (arr) {
+  const temp = arr.filter((num) => 20 % num === 0 && num > 0);
+
+  if (temp.length >= 2) return true;
+  else return false;
+};
+```
+
+Solution #2:
+
+```js
+const multiplyInto20 = function (arr) {
+  const numMap = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    const currentNum = arr[i];
+
+    const neededNumber = 20 / currentNum;
+
+    if (numMap[neededNumber]) {
+      return true;
+    }
+    numMap[currentNum] = true;
+  }
+
+  return false;
+};
+```
