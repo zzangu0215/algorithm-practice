@@ -30,6 +30,14 @@
   - [most songs in playlist](#01-most-songs-in-playlist)
   - [is perfect square](#02-is-perfect-square)
   - [array search 2d](#03-array-search-2d)
+- [**Week 8**](#week-8)
+  - [multiply into 20](#01-multiply-into-20)
+  - [zeroes and ones](#02-zeroes-and-ones)
+  - [merge sorted](#03-merge-sorted)
+- [**Week 9**](#week-9)
+  - [double triple map](#01-double-triple-map)
+  - [array intersection](#02-array-intersection)
+  - [squares of a sorted array](#03-squares-of-a-sorted-array)
 
 ## Week 1
 
