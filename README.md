@@ -568,3 +568,24 @@ const multiplyInto20 = function (arr) {
   return false;
 };
 ```
+
+### 02-Zeroes and Ones
+
+Q. Write code to create a function that takes in a string containing only 0s and 1s, and returning `true` if there are an equal number of 0s and 1s, else returning `false`.
+
+Solution:
+
+```js
+const zeroesAndOnes = function (str) {
+  let zeroes = 0;
+  let ones = 0;
+
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === "0") zeroes++;
+    if (str[i] === "1") ones++;
+  }
+
+  if (zeroes === ones) return true;
+  else return false;
+};
+```
