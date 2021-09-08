@@ -589,3 +589,42 @@ const zeroesAndOnes = function (str) {
   else return false;
 };
 ```
+
+### 03-Merge Sorted
+
+Q. Write code to create a function that takes in two sorted arrays of numbers and merges the contents of both arrays into one new sorted array.
+
+> **Note**: You may not use the built in sort method for this activity.
+
+Solution:
+
+```js
+const mergeSorted = (arr1, arr2) => {
+  const sortedArr = [];
+
+  let idx1 = 0;
+  let idx2 = 0;
+
+  while (idx1 < arr1.length && idx2 < arr2.length) {
+    if (arr1[idx1] < arr2[idx2]) {
+      sortedArr.push(arr1[idx1]);
+      idx1++;
+    } else {
+      sortedArr.push(arr2[idx2]);
+      idx2++;
+    }
+  }
+
+  while (idx1 < arr1.length) {
+    sortedArr.push(arr1[idx1]);
+    idx1++;
+  }
+
+  while (idx2 < arr2.length) {
+    sortedArr.push(arr2[idx2]);
+    idx2++;
+  }
+
+  return sortedArr;
+};
+```
