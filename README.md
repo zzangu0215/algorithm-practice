@@ -571,6 +571,22 @@ const mostSongsInPlaylist = function (arr) {
 
 ### 02-Is Perfect Square
 
+Q. Write code to create a function that takes in a whole number, and returns `true` if the number is a [perfect square](https://en.wikipedia.org/wiki/Square_number), otherwise returns `false`.
+
+Solution:
+
+```js
+const isPerfectSquare = function (num) {
+  let i = 0;
+
+  while (true) {
+    if (i * i === num) return true;
+    if (i * i > num) return false;
+    i++;
+  }
+};
+```
+
 ### 03-Array Search 2d
 
 ## Week 8
