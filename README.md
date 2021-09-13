@@ -589,6 +589,41 @@ const isPerfectSquare = function (num) {
 
 ### 03-Array Search 2d
 
+Q. Write code to create a function that takes in a 2-dimensional array and searches each 2D element for the character "X".
+
+Solution #1:
+
+```js
+const arraySearch2D = function (arr) {
+  const newArr = arr.flat();
+  let count = 0;
+
+  for (let i = 0; i < newArr.length; i++) {
+    if (newArr[i] === "X") count += 1;
+  }
+
+  return count;
+};
+```
+
+Solution #2:
+
+```js
+const arraySearch2D = function (arr) {
+  let count = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    for (let k = 0; k < arr[i].length; k++) {
+      if (arr[i][k] === "X") {
+        count++;
+      }
+    }
+  }
+
+  return count;
+};
+```
+
 ## Week 8
 
 ### 01-Multiply Into 20
