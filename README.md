@@ -527,6 +527,48 @@ const isAnagram = (strA, strB) => {
 
 ### 01-Most Songs in Playlist
 
+Q. Write code to create a function that takes an array of numbers, each representing the duration of a song. You will return the maximum number of songs present in the array that can fit into a 60 minute playlist.
+
+Solution #1:
+
+```js
+const mostSongsInPlaylist = function (arr) {
+  const sortedArr = arr.sort();
+  let totalMins = 0;
+  let totalSongs = 0;
+
+  for (let i = 0; i < sortedArr.length; i++) {
+    const currentSongDuration = sortedArr[i];
+
+    if (totalMins + currentSongDuration <= 60) {
+      totalMins += currentSongDuration;
+      totalSongs++;
+    } else {
+      return totalSongs;
+    }
+  }
+
+  return totalSongs;
+};
+```
+
+Solution #2:
+
+```js
+const mostSongsInPlaylist = function (arr) {
+  const sortedArr = arr.sort();
+  let sum = 0;
+
+  for (let i = 0; i < sortedArr.length; i++) {
+    sum += sortedArr[i];
+
+    if (sum > 60) return i;
+  }
+
+  return sortedArr.length;
+};
+```
+
 ### 02-Is Perfect Square
 
 ### 03-Array Search 2d
