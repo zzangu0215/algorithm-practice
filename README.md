@@ -721,3 +721,45 @@ const mergeSorted = (arr1, arr2) => {
   return sortedArr;
 };
 ```
+
+## Week 9
+
+### 01-Double Triple Map
+
+Q. Write code to create a function that takes in an array of integers and returns a transformed array where even numbers are doubled and odd numbers are tripled.
+
+Solution #1:
+
+```js
+const doubleTripleMap = function (arr) {
+  const newArr = arr.map((num) => {
+    if (num % 2 === 0) return num * 2;
+    else return num * 3;
+  });
+
+  return newArr;
+};
+```
+
+Solution #2:
+
+```js
+const doubleTripleMap = function (arr) {
+  const doubleTripleArr = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    const num = arr[i];
+
+    if (num % 2 === 0) {
+      doubleTripleArr.push(num * 2);
+    } else {
+      doubleTripleArr.push(num * 3);
+    }
+  }
+  return doubleTripleArr;
+};
+```
+
+### 02-Array Intersection
+
+### 03-Squares of A Sorted Array
