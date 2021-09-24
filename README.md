@@ -762,4 +762,46 @@ const doubleTripleMap = function (arr) {
 
 ### 02-Array Intersection
 
+Q. Write code to create a function that takes two arrays and returns a new array that is the intersection of both arrays.
+
+Solution #1:
+
+```js
+const arrayIntersection = function (arr1, arr2) {
+  const newArr = arr1.filter((num) => arr2.includes(num));
+
+  return newArr;
+};
+```
+
+Solution #2:
+
+```js
+const arrayIntersection = function (arr1, arr2) {
+  const numMap = {};
+  const result = [];
+
+  for (var i = 0; i < arr1.length; i++) {
+    var num = arr1[i];
+
+    if (numMap[num] === undefined) {
+      numMap[num] = 1;
+    } else {
+      numMap[num]++;
+    }
+  }
+
+  for (var i = 0; i < arr2.length; i++) {
+    var num = arr2[i];
+
+    if (numMap[num]) {
+      result.push(num);
+      numMap[num]--;
+    }
+  }
+
+  return result;
+};
+```
+
 ### 03-Squares of A Sorted Array
