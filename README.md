@@ -892,3 +892,23 @@ const sortedSquares = function (arr) {
   return sortedSquares;
 };
 ```
+
+## Week 10
+
+### 01-Common Element
+
+Q. Write code to create a function that takes in two arrays of numbers, with one number in common between the two arrays. Your function should return the number in common between the two array.
+
+Solution:
+
+```js
+const commonElement = function (arrA, arrB) {
+  const elem = {};
+
+  arrA.map((num) => (elem[num] = true));
+
+  for (let i = 0; i < arrB.length; i++) {
+    if (elem[arrB[i]] === true) return arrB[i];
+  }
+};
+```
