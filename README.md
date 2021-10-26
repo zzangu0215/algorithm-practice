@@ -1024,7 +1024,7 @@ const concertFlyer = function (magazine, flyer) {
 
 ## Week 11
 
-### 01-Reverse Words
+### 01-Reverse No Built In
 
 Q. Write code to create a function that takes a given string and returns a new string with all of the characters in reverse order. You are not permitted to use the built-in `reverse` method.
 
