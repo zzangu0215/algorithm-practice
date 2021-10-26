@@ -961,3 +961,63 @@ const permutationSubstring = function (str, sub) {
   return true;
 };
 ```
+
+### 03-Concert Flyer
+
+Q. Write code to create a function that takes in two strings: a concert flyer and a magazine. You will be checking if the words in the concert flyer could have been clipped from the magazine, e.g. if every instance of each word in the second string is found in the first string, return `true`, else return `false`.
+
+Solution #1:
+
+```js
+const concertFlyer = function (magazine, flyer) {
+  const magWordsArr = magazine.split(" ");
+  const flyWordsArr = flyer.split(" ");
+
+  let count = 0;
+
+  for (let i = 0; i < flyWordsArr.length; i++) {
+    if (magWordsArr.includes(flyWordsArr[i])) count++;
+  }
+
+  if (count === flyWordsArr.length) return true;
+  else return false;
+};
+```
+
+Solution #2:
+
+```js
+const concertFlyer = function (magazine, flyer) {
+  const magazineWords = magazine.split(" ");
+  const flyerWords = flyer.split(" ");
+
+  const magazineMap = {};
+  const flyerMap = {};
+
+  for (var i = 0; i < magazineWords.length; i++) {
+    var word = magazineWords[i];
+    if (!magazineMap[word]) {
+      magazineMap[word] = 1;
+    } else {
+      magazineMap[word]++;
+    }
+  }
+
+  for (var i = 0; i < flyerWords.length; i++) {
+    var word = flyerWords[i];
+    if (!flyerMap[word]) {
+      flyerMap[word] = 1;
+    } else {
+      flyerMap[word]++;
+    }
+  }
+
+  for (const key in flyerMap) {
+    if (magazineMap[key] !== flyerMap[key]) {
+      return false;
+    }
+  }
+
+  return true;
+};
+```
