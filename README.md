@@ -1062,3 +1062,45 @@ const leftRotation = (arr, positions) => {
   }
 };
 ```
+
+### 03-Reverse In Place
+
+Q. Write code to create a function that takes an array and reverses the array in place without using the built-in `reverse` method.
+
+Solution #1:
+
+```js
+const reverseInPlace = (arr) => {
+  const left = 0;
+  const right = arr.length - 1;
+  const half = right / 2;
+
+  for (let i = 0; i < half; i++) {
+    const temp = arr[left + i];
+    arr[left + i] = arr[right - i];
+    arr[right - i] = temp;
+  }
+
+  return arr;
+};
+```
+
+Solution #2:
+
+```js
+const reverseInPlace = (arr) => {
+  let left = 0;
+  let right = arr.length - 1;
+
+  while (left < right) {
+    const temp = arr[left];
+    arr[left] = arr[right];
+    arr[right] = temp;
+
+    left++;
+    right--;
+  }
+
+  return arr;
+};
+```
