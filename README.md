@@ -1021,3 +1021,24 @@ const concertFlyer = function (magazine, flyer) {
   return true;
 };
 ```
+
+## Week 11
+
+### 01-Reverse Words
+
+Q. Write code to create a function that takes a given string and returns a new string with all of the characters in reverse order. You are not permitted to use the built-in `reverse` method.
+
+Solution:
+
+```js
+const reverse = (str) => {
+  console.log(str);
+
+  let reverse = "";
+  for (let i = str.length - 1; i >= 0; i--) {
+    reverse += str[i];
+  }
+
+  return reverse;
+};
+```
