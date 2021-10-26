@@ -1042,3 +1042,23 @@ const reverse = (str) => {
   return reverse;
 };
 ```
+
+### 02-Left Rotation
+
+Q. Write code to create a function that takes an array of integers and a positive integer as arguments. The function should then rotate the elements of the array to the left by the given number.
+
+Solution:
+
+```js
+const leftRotation = (arr, positions) => {
+  if (arr.length === 0) return;
+
+  while (positions > 0) {
+    const firstElem = arr.shift();
+
+    arr.push(firstElem);
+
+    positions--;
+  }
+};
+```
