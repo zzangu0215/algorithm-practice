@@ -38,6 +38,34 @@
   - [double triple map](#01-double-triple-map)
   - [array intersection](#02-array-intersection)
   - [squares of a sorted array](#03-squares-of-a-sorted-array)
+- [**Week 10**](#week-10)
+  - [common element](#01-common-element)
+  - [permutation substring](#02-permutation-substring)
+  - [concert flyer](#03-concert-flyer)
+- [**Week 11**](#week-11)
+  - [reverse no built in](#01-reverse-no-built-in)
+  - [left rotation](#02-left-rotation)
+  - [reverse in place](#03-reverse-in-place)
+- [**Week 12**](#week-12)
+  - [valid brackets](#01-valid-brackets)
+  - [min increment for unique](#02-min-increment-for-unique)
+  - [peak finder](#03-peak-finder)
+- [**Week 13**](#week-13)
+  - [is armstrong](#01-is-armstrong)
+  - [max profit](#02-max-profit)
+  - [smallest difference](#03-smallest-difference)
+- [**Week 14**](#week-14)
+  - [maximum continuous subarray](#01-maximum-continuous-subarray)
+  - [merge meeting times](#02-merge-meeting-times)
+  - [int to roman](#03-int-to-roman)
+- [**Week 15**](#week-15)
+  - [plus one](#01-plus-one)
+  - [one edit away](#02-one-edit-away)
+  - [caesar cipher](#03-caesar-cipher)
+- [**Week 16**](#week-16)
+  - [roman to int](#01-roman-to-int)
+  - [rotation point](#02-rotation-point)
+  - [simplify path](#03-simplify-path)
 
 ## Week 1
 
@@ -527,9 +555,102 @@ const isAnagram = (strA, strB) => {
 
 ### 01-Most Songs in Playlist
 
+Q. Write code to create a function that takes an array of numbers, each representing the duration of a song. You will return the maximum number of songs present in the array that can fit into a 60 minute playlist.
+
+Solution #1:
+
+```js
+const mostSongsInPlaylist = function (arr) {
+  const sortedArr = arr.sort();
+  let totalMins = 0;
+  let totalSongs = 0;
+
+  for (let i = 0; i < sortedArr.length; i++) {
+    const currentSongDuration = sortedArr[i];
+
+    if (totalMins + currentSongDuration <= 60) {
+      totalMins += currentSongDuration;
+      totalSongs++;
+    } else {
+      return totalSongs;
+    }
+  }
+
+  return totalSongs;
+};
+```
+
+Solution #2:
+
+```js
+const mostSongsInPlaylist = function (arr) {
+  const sortedArr = arr.sort();
+  let sum = 0;
+
+  for (let i = 0; i < sortedArr.length; i++) {
+    sum += sortedArr[i];
+
+    if (sum > 60) return i;
+  }
+
+  return sortedArr.length;
+};
+```
+
 ### 02-Is Perfect Square
 
+Q. Write code to create a function that takes in a whole number, and returns `true` if the number is a [perfect square](https://en.wikipedia.org/wiki/Square_number), otherwise returns `false`.
+
+Solution:
+
+```js
+const isPerfectSquare = function (num) {
+  let i = 0;
+
+  while (true) {
+    if (i * i === num) return true;
+    if (i * i > num) return false;
+    i++;
+  }
+};
+```
+
 ### 03-Array Search 2d
+
+Q. Write code to create a function that takes in a 2-dimensional array and searches each 2D element for the character "X".
+
+Solution #1:
+
+```js
+const arraySearch2D = function (arr) {
+  const newArr = arr.flat();
+  let count = 0;
+
+  for (let i = 0; i < newArr.length; i++) {
+    if (newArr[i] === "X") count += 1;
+  }
+
+  return count;
+};
+```
+
+Solution #2:
+
+```js
+const arraySearch2D = function (arr) {
+  let count = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    for (let k = 0; k < arr[i].length; k++) {
+      if (arr[i][k] === "X") {
+        count++;
+      }
+    }
+  }
+
+  return count;
+};
+```
 
 ## Week 8
 
@@ -626,5 +747,168 @@ const mergeSorted = (arr1, arr2) => {
   }
 
   return sortedArr;
+};
+```
+
+## Week 9
+
+### 01-Double Triple Map
+
+Q. Write code to create a function that takes in an array of integers and returns a transformed array where even numbers are doubled and odd numbers are tripled.
+
+Solution #1:
+
+```js
+const doubleTripleMap = function (arr) {
+  const newArr = arr.map((num) => {
+    if (num % 2 === 0) return num * 2;
+    else return num * 3;
+  });
+
+  return newArr;
+};
+```
+
+Solution #2:
+
+```js
+const doubleTripleMap = function (arr) {
+  const doubleTripleArr = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    const num = arr[i];
+
+    if (num % 2 === 0) {
+      doubleTripleArr.push(num * 2);
+    } else {
+      doubleTripleArr.push(num * 3);
+    }
+  }
+  return doubleTripleArr;
+};
+```
+
+### 02-Array Intersection
+
+Q. Write code to create a function that takes two arrays and returns a new array that is the intersection of both arrays.
+
+Solution #1:
+
+```js
+const arrayIntersection = function (arr1, arr2) {
+  const newArr = arr1.filter((num) => arr2.includes(num));
+
+  return newArr;
+};
+```
+
+Solution #2:
+
+```js
+const arrayIntersection = function (arr1, arr2) {
+  const numMap = {};
+  const result = [];
+
+  for (var i = 0; i < arr1.length; i++) {
+    var num = arr1[i];
+
+    if (numMap[num] === undefined) {
+      numMap[num] = 1;
+    } else {
+      numMap[num]++;
+    }
+  }
+
+  for (var i = 0; i < arr2.length; i++) {
+    var num = arr2[i];
+
+    if (numMap[num]) {
+      result.push(num);
+      numMap[num]--;
+    }
+  }
+
+  return result;
+};
+```
+
+### 03-Squares of A Sorted Array
+
+Q. Write code to create a function that takes an array of integers sorted in ascending (increasing) order and returns a new array containing the squares of each number in ascending order.
+
+Solution #1:
+
+```js
+const sortedSquares = function (arr) {
+  const squared = arr.map((num) => num * num);
+
+  return squared.sort((a, b) => {
+    return a - b;
+  });
+};
+```
+
+Solution #2:
+
+```js
+const sortedSquares = function (arr) {
+  const result = new Array(arr.length);
+
+  let idx1 = 0;
+  let idx2 = arr.length - 1;
+  let idx3 = result.length - 1;
+
+  while (idx1 <= idx2) {
+    const left = arr[idx1];
+    const right = arr[idx2];
+
+    if (Math.abs(left) > Math.abs(right)) {
+      result[idx3] = left ** 2;
+      idx1++;
+    } else {
+      result[idx3] = right ** 2;
+      idx2--;
+    }
+
+    idx3--;
+  }
+
+  return result;
+};
+```
+
+Solution #3:
+
+```js
+const sortedSquares = function (arr) {
+  const squares = arr.map(function (num) {
+    return num ** 2;
+  });
+
+  const sortedSquares = squares.sort(function (a, b) {
+    return a - b;
+  });
+
+  return sortedSquares;
+};
+```
+
+## Week 10
+
+### 01-Common Element
+
+Q. Write code to create a function that takes in two arrays of numbers, with one number in common between the two arrays. Your function should return the number in common between the two array.
+
+Solution:
+
+```js
+const commonElement = function (arrA, arrB) {
+  const elem = {};
+
+  arrA.map((num) => (elem[num] = true));
+
+  for (let i = 0; i < arrB.length; i++) {
+    if (elem[arrB[i]] === true) return arrB[i];
+  }
 };
 ```
