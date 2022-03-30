@@ -1104,3 +1104,527 @@ const reverseInPlace = (arr) => {
   return arr;
 };
 ```
+
+## Week 12
+
+### 01-Valid Brackets
+
+Q. Write code to create a function that takes in a string and returns `true` if the string contains a valid set or sets of brackets, else `false` should be returned.
+
+Solution:
+
+```js
+const validBrackets = function (str) {
+  const stack = [];
+
+  for (let i = 0; i < str.length; i += 1) {
+    const char = str[i];
+
+    if (char === "(" || char === "{" || char === "[") {
+      stack.push(char);
+    } else if (char === ")") {
+      if (stack.pop() !== "(") {
+        return false;
+      }
+    } else if (char === "}") {
+      if (stack.pop() !== "{") {
+        return false;
+      }
+    } else if (char === "]") {
+      if (stack.pop() !== "[") {
+        return false;
+      }
+    }
+  }
+
+  return stack.length === 0;
+};
+```
+
+### 02-Min Increment For Unique
+
+Q. Write code to create a function that takes in an array of numbers and returns the minimum number of increments needed to make the numbers unique.
+
+Solution:
+
+```js
+const minIncrement = function (nums) {
+  const uniqueNums = {};
+  let increments = 0;
+
+  for (let i = 0; i < nums.length; i += 1) {
+    while (uniqueNums[nums[i]] === true) {
+      nums[i] += 1;
+      increments += 1;
+    }
+
+    uniqueNums[nums[i]] = true;
+  }
+
+  return increments;
+};
+```
+
+### 03-Peak Finder
+
+Q. Write code to create a function that takes in an array of numbers and returns the peak of the array.
+
+Solution:
+
+```js
+const peakFinder = function (nums) {
+  if (nums.length === 1) {
+    return nums[0];
+  }
+
+  if (nums[0] > nums[1]) {
+    return nums[0];
+  }
+
+  if (nums[nums.length - 1] > nums[nums.length - 2]) {
+    return nums[nums.length - 1];
+  }
+
+  let min = 0;
+  let max = nums.length - 1;
+
+  while (min < max) {
+    const middle = Math.floor((max - min) / 2) + min;
+
+    if (nums[middle - 1] < nums[middle] && nums[middle] > nums[middle + 1]) {
+      return nums[middle];
+    }
+
+    if (nums[middle - 1] > nums[middle]) {
+      max = middle;
+    } else {
+      min = middle;
+    }
+  }
+
+  // empty array, return not a number
+  return NaN;
+};
+```
+
+## Week 13
+
+### 01-Is Armstrong
+
+Q. Write code to create a function that takes a positive integer and returns `true` if the integer is an armstrong number, else return `false`. To find out if a number is an armstrong number, take each individual digit and raise it to the power of the length of the entire number and add the digits. If the sum equals the original number, the number is an armstrong number. For more information, refer to the following [Quora post: What is an Armstrong Number](https://www.quora.com/What-is-an-Armstrong-number).
+
+Solution:
+
+```js
+const isArmstrong = function (num) {
+  const str = String(num);
+  let sum = 0;
+
+  for (let i = 0; i < str.length; i++) {
+    const digit = parseInt(str[i]);
+    sum += digit ** str.length;
+  }
+
+  return sum === num;
+};
+```
+
+### 02-Max Profit
+
+Q. Write code to create a function that takes in an array of numbers each representing the price of a stock on a different day. Return the maximum profit that can be made from a single purchase of stock on one day and a single sale on a later day.
+
+Solution:
+
+```js
+const maxProfit = function (prices) {
+  let smallest = Infinity;
+  let bestProfit = 0;
+
+  for (let i = 0; i < prices.length; i++) {
+    const price = prices[i];
+    smallest = Math.min(smallest, price);
+    bestProfit = Math.max(bestProfit, price - smallest);
+  }
+
+  return bestProfit;
+};
+```
+
+### 03-Smallest Difference
+
+Q. Write code to create a function that takes in two sorted arrays of integers. Your function should return a new two element array containing one number from each sorted array with the smallest difference.
+
+Solution:
+
+```js
+const smallestDifference = function (arr1, arr2) {
+  let left = 0;
+  let right = 0;
+  let bestPair = [];
+  let bestDiff = Infinity;
+
+  while (left < arr1.length && right < arr2.length) {
+    const leftVal = arr1[left];
+    const rightVal = arr2[right];
+    const currentDiff = Math.abs(rightVal - leftVal);
+
+    if (currentDiff < bestDiff) {
+      bestDiff = currentDiff;
+      bestPair = [leftVal, rightVal];
+
+      if (bestDiff === 0) {
+        return bestPair;
+      }
+    }
+
+    if (leftVal < rightVal) {
+      left++;
+    } else if (rightVal < leftVal) {
+      right++;
+    }
+  }
+
+  return bestPair;
+};
+```
+
+## Week 14
+
+### 01-Maximum Continuous Subarray
+
+Q. Write code to create a function that takes in an array and returns the sum of the maximum continuous, or contiguous, subarray.
+
+> Note: Contiguous refers to items that are next to each other in sequence. In the array [1, 2, 3, -27, 5], for example, [1, 2, 3] is a contiguous subarray while [1, 2, 3, 5] is not, since 5 is not directly next to 3 in the sequence.
+
+Solution:
+
+```js
+const maxSumArray = function (numbers) {
+  // If array contains only one integer, return the value as the sum
+  if (numbers.length === 1) {
+    return numbers[0];
+    // If the array contains two integers or only positive integers return the sum
+  }
+  if (numbers.length === 2 || numbers.every((x) => x >= 0)) {
+    return numbers.reduce((a, b) => a + b, 0);
+  }
+  // Set the current max and max sum to the value of the first integer in array
+  let currentMax = numbers[0];
+  let maxSum = numbers[0];
+  // Loop through array to test for maximum sum
+  for (let x = 1; x < numbers.length; x++) {
+    let numToTest = numbers[x];
+    // Set currentMax to equal either the number to test or sum of number to test and currentMax
+    currentMax = Math.max(numToTest, numToTest + currentMax);
+    // Set maxSum to be the max of the currentMax or the current maxSum value
+    maxSum = Math.max(maxSum, currentMax);
+  }
+  return maxSum;
+};
+```
+
+### 02-Merge Meeting Times
+
+Q. Write code to create a function that takes in a 2D array of meeting times, with each sub-array containing two integers that represent a meeting's start and end times. Return a new 2D array of collapsed meeting times -- that is, combined sub-arrays where meeting blocks overlap to reflect the combined start and end time.
+
+Solution:
+
+```js
+var mergeMeetingTimes = function (arr) {
+  var arrCopy = JSON.parse(JSON.stringify(arr));
+  var sortedArr = arrCopy.sort((a, b) => a[0] - b[0]);
+
+  var result = [sortedArr[0]];
+
+  for (var i = 1; i < sortedArr.length; i++) {
+    var lastMeeting = result[result.length - 1];
+    var currentMeeting = sortedArr[i];
+
+    if (lastMeeting[1] >= currentMeeting[0]) {
+      if (lastMeeting[1] < currentMeeting[1]) {
+        lastMeeting[1] = currentMeeting[1];
+      }
+    } else {
+      result.push(currentMeeting);
+    }
+  }
+
+  return result;
+};
+```
+
+### 03-Int To Roman
+
+Q. Write code to create a function that takes in an integer and returns a string that represents the number as a Roman numeral. If you aren't familiar with Roman numerals or want to review them, refer to [Your Dictionary's Roman Numerals Chart, Translation Tips & History](https://reference.yourdictionary.com/resources/romanums.html).
+
+Solution:
+
+```js
+var intToRoman = function (num) {
+  var result = "";
+
+  while (num > 0) {
+    if (num >= 1000) {
+      result += "M";
+      num -= 1000;
+    } else if (num >= 900) {
+      result += "CM";
+      num -= 900;
+    } else if (num >= 500) {
+      result += "D";
+      num -= 500;
+    } else if (num >= 400) {
+      result += "CD";
+      num -= 400;
+    } else if (num >= 100) {
+      result += "C";
+      num -= 100;
+    } else if (num >= 90) {
+      result += "XC";
+      num -= 90;
+    } else if (num >= 50) {
+      result += "L";
+      num -= 50;
+    } else if (num >= 40) {
+      result += "XL";
+      num -= 40;
+    } else if (num >= 40) {
+      result += "XL";
+      num -= 40;
+    } else if (num >= 10) {
+      result += "X";
+      num -= 10;
+    } else if (num >= 9) {
+      result += "IX";
+      num -= 9;
+    } else if (num >= 5) {
+      result += "V";
+      num -= 5;
+    } else if (num >= 4) {
+      result += "IV";
+      num -= 4;
+    } else if (num >= 1) {
+      result += "I";
+      num -= 1;
+    }
+  }
+
+  return result;
+};
+```
+
+### Week 15
+
+### 01-Plus One
+
+Q. Write code to create a function that takes in an array of digits representing a non-negative integer and add 1 to it. The digits are arranged such that the most significant digits are on the left and each element in the array contains a single integer digit.
+
+Solution:
+
+```js
+const plusOne = function (digits) {
+  let carry = 1;
+
+  for (let i = digits.length - 1; i >= 0; i--) {
+    const plusOne = digits[i] + carry;
+    var sum;
+    carry = 0;
+
+    if (plusOne > 9) {
+      carry = 1;
+      sum = 10 - plusOne;
+    } else {
+      sum = plusOne;
+    }
+
+    digits[i] = sum;
+  }
+
+  if (carry) {
+    digits.unshift(carry);
+  }
+
+  return digits;
+};
+```
+
+### 02-One Edit Away
+
+Q. Write code to create a function that takes in two strings and returns true if they are exactly one character edit away from each other, else return false.
+
+Solution:
+
+```js
+const oneEditAway = function (str1, str2) {
+  // If difference in string lengths is greater than 1 OR strings exactly equal, return false
+  if (str1 === str2 || Math.abs(str1.length - str2.length) > 1) {
+    return false;
+  }
+  // Initial index for each string is 0
+  let index1 = 0;
+  let index2 = 0;
+  // Set edit count to zero
+  let editCount = 0;
+
+  while (index1 < str1.length && index2 < str2.length) {
+    // If characters in string are not a match
+    if (str1[index1] !== str2[index2]) {
+      // Check edit count. If editCount is 1, return false.
+      if (editCount === 1) {
+        return false;
+      }
+      // If one string is longer then can only add a character
+      if (str1.length > str2.length) {
+        index1++;
+      } else if (str2.length < str1.length) {
+        index2++;
+        // If one string is not longer, strings must be equal length
+      } else {
+        index1++;
+        index2++;
+      }
+      editCount++;
+      // If current characters are equal
+    } else {
+      index1++;
+      index2++;
+    }
+  }
+  return true;
+};
+```
+
+### 03-Caesar Cipher
+
+Q. Write code to create a function that takes in a string and an offset integer. Your function should return a new string with characters shifted up by the offset. If you're unfamiliar with Caesar Cipher, spend a few minutes reading over the [Wikipedia page on Caesar Cipher](https://en.wikipedia.org/wiki/Caesar_cipher).
+
+Solution:
+
+```js
+const caesarCipher = function (str, offset) {
+  let result = "";
+
+  while (offset < 0) {
+    offset = 26 + offset;
+  }
+
+  for (let i = 0; i < str.length; i++) {
+    const char = str[i];
+    const charCode = char.charCodeAt(0);
+    let offsetChar = char;
+
+    if (charCode >= 65 && charCode <= 90) {
+      offsetChar = String.fromCharCode(((charCode - 65 + offset) % 26) + 65);
+    } else if (charCode >= 97 && charCode <= 122) {
+      offsetChar = String.fromCharCode(((charCode - 97 + offset) % 26) + 97);
+    }
+
+    result += offsetChar;
+  }
+
+  return result;
+};
+```
+
+### Week 16
+
+### 01-Roman To Int
+
+Q. Write code to create a function that takes in a Roman numeral string and returns its integer form. If you aren't familiar with Roman numerals or would like to review them, refer to this [guide to Roman numerals](https://reference.yourdictionary.com/resources/romanums.html).
+
+Solution:
+
+```js
+var romanToInt = function (str) {
+  var numerals = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000,
+  };
+
+  var result = 0;
+
+  for (var i = 0; i < str.length; i++) {
+    var currentNumeral = str[i];
+    var nextNumeral = str[i + 1];
+
+    var currentValue = numerals[currentNumeral];
+    var nextValue = numerals[nextNumeral];
+
+    if (currentValue < nextValue) {
+      result -= currentValue;
+    } else {
+      result += currentValue;
+    }
+  }
+
+  return result;
+};
+```
+
+### 02-Rotation Point
+
+Q. Write code to create a function that takes in an array of strings. These strings will be in sorted order, but the array might be rotated. Return the index of the rotation, or `-1` if there is none.
+
+Solution:
+
+```js
+var rotationPoint = function (words) {
+  var left = 0;
+  var right = words.length - 1;
+
+  while (left <= right) {
+    var middle = Math.floor((right + left) / 2);
+
+    if (words[middle] < words[middle - 1]) {
+      return middle;
+    }
+
+    if (words[left] > words[middle]) {
+      right = middle - 1;
+    } else {
+      left = middle + 1;
+    }
+  }
+
+  return -1;
+};
+```
+
+### 03-Simplify Path
+
+Q. Write code to create a function that takes in a string representing an absolute file path and then simplifies it, similar to `path.join`.
+
+Solution:
+
+```js
+var simplifyPath = function (path) {
+  var pathArr = path.split("/");
+  var stack = [];
+
+  for (var i = 0; i < pathArr.length; i++) {
+    var section = pathArr[i];
+
+    if (!section) {
+      continue;
+    }
+
+    if (section === ".") {
+      continue;
+    }
+
+    if (section === "..") {
+      stack.pop();
+      continue;
+    }
+
+    stack.push(section);
+  }
+
+  return "/" + stack.join("/");
+};
+```
